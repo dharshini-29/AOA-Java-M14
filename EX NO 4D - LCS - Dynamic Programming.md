@@ -1,39 +1,74 @@
 
-# EX 4D Longest Common SubSequence - Dynamic Programming.
-## DATE:
+# EX 4E Longest Increasing Subsequence - Dynamic Programming.
+
 ## AIM:
 To write a Java program to for given constraints.
-Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.
-A subsequence of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
-
-For example, "ace" is a subsequence of "abcde".
-A common subsequence of two strings is a subsequence that is common to both strings.
-
-Input: text1 = "abcde", text2 = "ace" 
-Output: 3  
-Explanation: The longest common subsequence is "ace" and its length is 3.
-Constraints:
-
-1 <= text1.length, text2.length <= 1000
-text1 and text2 consist of only lowercase English characters.
+Given an integer array nums, return the length of the longest strictly increasing subsequence.
 
 ## Algorithm
-1. 
-2. 
-3. 
-4.  
-5.   
+1. Input Reading:
+Read the number of elements n and the array nums[] containing integers.
+2. Initialization:
+Create an array dp[] of size n and initialize all values to 1 (each element is an LIS of length 1 by itself).
+3. Dynamic Programming Update:
+For each element nums[i] (from index 1 to n-1),
+compare it with all previous elements nums[j] (where 0 ≤ j < i).
+If nums[i] > nums[j], then update dp[i] = max(dp[i], dp[j] + 1).
+4.  Find Maximum Length:
+After filling the dp[] array, the length of the longest increasing subsequence is the maximum value in dp[].
+5.  Output:
+Print the maximum LIS length as the final result. 
 
 ## Program:
 ```
-/*
-Program to implement Reverse a String
-Developed by: 
-Register Number:  
-*/
+
+Developed by: KAVIYA SNEKA M
+Register Number:212223040091
+import java.util.*;
+
+public class LongestIncreasingSubsequence {
+
+    public static int lengthOfLIS(int[] nums) {
+        int[] dp=new int[nums.length];
+        Arrays.fill(dp,1);
+        for(int i=1;i<nums.length;i++){
+            for(int j=0;j<i;j++){
+                if(nums[i]>nums[j]){
+                    dp[i]=Math.max(dp[i],dp[j]+1);
+                }
+            }
+        }
+        int longest=0;
+        for(int c:dp){
+            longest=Math.max(longest,c);
+        }
+        return longest;
+    }
+
+public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+      
+        int n = scanner.nextInt();
+        int[] nums = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = scanner.nextInt();
+        }
+
+        
+        int result = lengthOfLIS(nums);
+        System.out.println("Length of Longest Increasing Subsequence: " + result);
+
+        scanner.close();
+    }
+}
+
+
 ```
 
 ## Output:
+<img width="1120" height="241" alt="image" src="https://github.com/user-attachments/assets/1629107c-406e-436d-85c9-549220cdc74a" />
 
 
 
